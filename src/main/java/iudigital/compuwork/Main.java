@@ -7,13 +7,20 @@ import java.util.Scanner;
 /**
  *
  * @author dfrincong
+ * 
+ * Clase principal encargada de ejecutar el programa y por ende gestionar los requerimientos.
  */
 public class Main {
 
     public static void main(String[] args) {
+        // creación de clase de tipo Scanner para la interacción con el usuario
         Scanner sc = new Scanner(System.in);
         
-        ArrayList<Departamento> listaDept = new ArrayList();
+        /*
+        creación de la lista de departamentos que será agregada a la empresa.
+        creación y agregacipon de departamentos para agregar a la lista.
+        */
+        ArrayList<Departamento> listaDept = new ArrayList<>();
         
         Departamento deptUno = new Departamento("1", "Recursos Humanos");
         Departamento deptDos = new Departamento("2", "Ventas");
@@ -21,13 +28,16 @@ public class Main {
         listaDept.add(deptUno);
         listaDept.add(deptDos);
         
+        // creación de un objeto de tipo empresa que gestionará los departamentos y empleados
         Empresa compuWork = new Empresa("CompuWork", listaDept);
         
         // Menú principal para la interfaz de usuario
+        
+        // variable para pedir una opción del menú al usuario
         int opcion;
         
         do {
-            
+            // lectura del menú
             System.out.println("Menú principal");
             System.out.println("--------------");
             System.out.println("opciones:");
@@ -43,18 +53,22 @@ public class Main {
             System.out.println("9 generar reporte por departamento");
             System.out.println("--------------");
             
+            // pedir opción al usuario
             System.out.println("seleccione una opción: ");
             opcion = sc.nextInt();
             sc.nextLine();
             
-            // para manipular los empleados desde un objeto de tipo Empresa
+            // variable para manipular los empleados desde un objeto de tipo Empresa
             List<Departamento> depts = compuWork.getListaDepartamentos();
             
             switch (opcion) {
+                // opción para salir del programa
                 case 0:
                     System.out.println("Ha elegido salir.");
                     break;
+                // opción para crear un departamento
                 case 1:
+                    // solicitar datos, crear y agregar un departamento a la empresa
                     System.out.println("Ingrese id de departamento: ");
                     String miId = sc.nextLine();
 
@@ -64,7 +78,9 @@ public class Main {
                     compuWork.CrearDept(miId, miNombre);
                     System.out.println("-------------");
                     break;
+                // opción para modificar un departamento
                 case 2:
+                    // solicitar datos al usuario y modificar el nombre del departamento
                     System.out.println("-------------");
                     
                     System.out.println("Ingrese id de departamento que quiere cambiar: ");
@@ -76,7 +92,9 @@ public class Main {
                     compuWork.ModificarDept(miIdMod, miNombreMod);
                     System.out.println("-------------");
                     break;
+                // opción para eliminar un departamento de la empresa
                 case 3:
+                    // solicitar id al usuario para eliminar un departamento
                     System.out.println("-------------");
                     
                     System.out.println("Ingrese id de departamento que quiere eliminar: ");
@@ -85,19 +103,23 @@ public class Main {
                     compuWork.EliminarDept(miIdEli);
                     System.out.println("-------------");
                     break;
+                // opción para crear y asignar un empleado en un departamento
                 case 4:
+                    // solicitar el tipo de empleado a crear
                     System.out.println("-------------");
                     int opcionX;
                     System.out.println("seleccione 1 para crear empleado permanente o 2 para crear empleado temporal: ");
                     opcionX = sc.nextInt();
                     sc.nextLine();
                     
+                    // solicitar el departamento al cual será asignado el empleado
                     String asignarDept;
                     System.out.println("escriba el departamento al cual va asignar el empleado: ");
                     asignarDept = sc.nextLine();
                     
                     
                     if (opcionX == 1) {
+                        // crear y agregar empleado permanente, si el departamento escrito existe
                         for (Departamento dept : depts) {
                             if (dept.getNombre().equalsIgnoreCase(asignarDept)) {
                                 System.out.println("Ingrese el sueldo del empleado: ");
@@ -120,6 +142,7 @@ public class Main {
                             }
                         }
                     } else if (opcionX == 2) {
+                        // crear y agregar empleado temporal, si el departamento escrito existe
                         for (Departamento dept : depts) {
                             if (dept.getNombre().equalsIgnoreCase(asignarDept)) {
                                 System.out.println("Ingrese el sueldo por hora del empleado: ");
@@ -148,7 +171,9 @@ public class Main {
                     
                     System.out.println("-------------");
                     break;
+                // opción para modificar un empleado 
                 case 5:
+                    // modificar empleado según su tipo y el departamento al que pertenezca
                     System.out.println("-------------");
                     int opcionY;
                     System.out.println("seleccione 1 para modificar empleado permanente o 2 para modificar empleado temporal: ");
@@ -161,6 +186,7 @@ public class Main {
                     
                     
                     if (opcionY == 1) {
+                        // modificar empleado permanente
                         for (Departamento dept : depts) {
                             if (dept.getNombre().equalsIgnoreCase(asignarDeptM)) {
                                 System.out.println("Ingrese el nuevo sueldo del empleado: ");
@@ -178,6 +204,7 @@ public class Main {
                             }
                         }
                     } else if (opcionY == 2) {
+                        // modificar empleado temporal
                         for (Departamento dept : depts) {
                             if (dept.getNombre().equalsIgnoreCase(asignarDeptM)) {
                                 System.out.println("Ingrese el nuevo sueldo por hora del empleado: ");
@@ -200,7 +227,9 @@ public class Main {
                     
                     System.out.println("-------------");
                     break;
+                // opción para eliminar empleado de un departamento
                 case 6:
+                    // eliminar empleado según su tipo y el departamento al que pertenezca
                     System.out.println("-------------");
                     
                     int opcionZ;
@@ -214,6 +243,7 @@ public class Main {
                     
                     
                     if (opcionZ == 1) {
+                        // eliminar empleado permanente
                         for (Departamento dept : depts) {
                             if (dept.getNombre().equalsIgnoreCase(asignarDeptE)) {
                                 System.out.println("Ingrese cédula de empleado que quiere eliminar: ");
@@ -223,6 +253,7 @@ public class Main {
                             }
                         }
                     } else if (opcionZ == 2) {
+                        // eliminar empleado temporal
                         for (Departamento dept : depts) {
                             if (dept.getNombre().equalsIgnoreCase(asignarDeptE)) {
                                 System.out.println("Ingrese cédula de empleado que quiere eliminar: ");
@@ -237,6 +268,7 @@ public class Main {
           
                     System.out.println("-------------");
                     break;
+                // opción para ver empleados asignados a cada deoartamento
                 case 7:
                     System.out.println("-------------");
                     
@@ -244,6 +276,7 @@ public class Main {
                     
                     System.out.println("-------------");
                     break;
+                // opción para generar reporte de cada empleado
                 case 8:
                     System.out.println("-------------");
                     
@@ -253,6 +286,7 @@ public class Main {
                     
                     System.out.println("-------------");
                     break;
+                // opción para generar reporte por departamento
                 case 9:
                     System.out.println("-------------");
                     
@@ -260,6 +294,7 @@ public class Main {
                     
                     System.out.println("-------------");
                     break;
+                // cualquier opción diferente a las sugeridas en el menú de opciones
                 default:
                     System.out.println("Ha elegido una opción invalida");
                     System.out.println("------------------------------");

@@ -5,16 +5,21 @@ import java.util.List;
 /**
  *
  * @author dfrincong
+ * 
+ * Esta clase modela a la empresa que contiene a los departamentos pertenecientes a la misma
  */
 public class Empresa {
+    // atributos
     private String nombre;
     private List<Departamento> listaDepartamentos;
-
+    
+    // constructor
     public Empresa(String nombre, List<Departamento> listaDepartamentos) {
         this.nombre = nombre;
         this.listaDepartamentos = listaDepartamentos;
     }
 
+    // getters and setters
     public String getNombre() {
         return nombre;
     }
@@ -31,6 +36,12 @@ public class Empresa {
         this.listaDepartamentos = listaDepartamentos;
     }
     
+    /**
+     * método para crear un departamento y agregarlo a la lista de departamentos de la empresa.
+     * 
+     * @param id
+     * @param nombre 
+     */
     public void CrearDept(String id, String nombre){
         try {    
             Departamento miDept = new Departamento(id, nombre);
@@ -45,6 +56,11 @@ public class Empresa {
         }
     }
     
+    /**
+     * método para modificar el nombre de un departamento
+     * @param id
+     * @param nombreNuevo 
+     */
     public void ModificarDept(String id, String nombreNuevo){
         try {    
             for (Departamento departamento : listaDepartamentos) {
@@ -66,6 +82,10 @@ public class Empresa {
         }
     }
     
+    /**
+     * método para eliminar un departamento de la lista de departamentos de la empresa
+     * @param id 
+     */
     public void EliminarDept(String id){
         try {
             for (Departamento departamento : listaDepartamentos) {
@@ -87,6 +107,9 @@ public class Empresa {
         }
     }
     
+    /**
+     * método para ver los empleados que hay en cada departamento de la empresa
+     */
     public void verEmpleadosXDept(){
         try {
             for (Departamento departamento : listaDepartamentos) {
@@ -102,7 +125,9 @@ public class Empresa {
     
     }
 
-
+    /**
+     * método que permite ver un pequeño reporte sobre la cantidad de empleados existen en cada departamento
+     */
     public void generarReporteXDepartamento() {
         try {
             for (Departamento departamento1 : listaDepartamentos) {

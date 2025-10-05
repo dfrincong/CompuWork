@@ -6,13 +6,17 @@ import java.util.List;
 /**
  *
  * @author dfrincong
+ * 
+ * Esta clase modela un departamento que contiene empleados (permanentes y temporales).
  */
 public class Departamento {
+    // atributos
     private String id;
     private String nombre;
     private List<EmpleadoPermanente> listaEmpleadosPerm;
     private List<EmpleadoTemporal> listaEmpleadosTemp;
 
+    // constructor
     public Departamento(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
@@ -20,6 +24,7 @@ public class Departamento {
         this.listaEmpleadosTemp = new ArrayList<>();
     }
 
+    // getters and setters
     public String getId() {
         return id;
     }
@@ -52,11 +57,25 @@ public class Departamento {
         this.listaEmpleadosTemp = listaEmpleadosTemp;
     }
 
+    /**
+     * método que retorna los datos de un departamento
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         return "Departamento{" + "id=" + id + ", nombre=" + nombre + '}';
     }
     
+    /**
+     * método para crear un empleado permanente y agregarlo a un departamento.
+     * 
+     * @param sueldo
+     * @param diasVacaciones
+     * @param cedula
+     * @param nombre
+     * @param apellido 
+     */
     public void CrearEmpPermanente(double sueldo, int diasVacaciones, String cedula, String nombre, String apellido){
         try {    
             EmpleadoPermanente miEmpPerm = new EmpleadoPermanente(sueldo, diasVacaciones, cedula, nombre, apellido);
@@ -71,6 +90,15 @@ public class Departamento {
         }
     }
     
+    /**
+     * método para crear un empleado temporal y agregarlo a un departamento.
+     * 
+     * @param horasContrato
+     * @param sueldoHora
+     * @param cedula
+     * @param nombre
+     * @param apellido 
+     */
     public void CrearEmpTemporal(int horasContrato, double sueldoHora, String cedula, String nombre, String apellido){
         try {    
             EmpleadoTemporal miEmpTemp = new EmpleadoTemporal(horasContrato, sueldoHora, cedula, nombre, apellido);
@@ -85,6 +113,13 @@ public class Departamento {
         }
     }
     
+    /**
+     * método para modificar datos de un empleado permanente.
+     * 
+     * @param sueldo
+     * @param diasVacaciones
+     * @param cedula 
+     */
     public void ModificarEmpPerm(double sueldo, int diasVacaciones, String cedula){
         try {    
             for (EmpleadoPermanente empleadoP : listaEmpleadosPerm) {
@@ -107,7 +142,13 @@ public class Departamento {
         }
     }
     
-    
+    /**
+     * método para modificar datos de un empleado temporal.
+     * 
+     * @param horasContrato
+     * @param sueldoHora
+     * @param cedula 
+     */
     public void ModificarEmpTemp(int horasContrato, double sueldoHora, String cedula){
         try {    
             for (EmpleadoTemporal empleadoT : listaEmpleadosTemp) {
@@ -130,6 +171,11 @@ public class Departamento {
         }
     }
     
+    /**
+     * método para eliminar un empleado permanente de un departamento.
+     * 
+     * @param cedula 
+     */
     public void EliminarEmpPerm(String cedula){
         try {
             for (EmpleadoPermanente empleadoPermanente : listaEmpleadosPerm) {
@@ -151,6 +197,11 @@ public class Departamento {
         }
     }
     
+    /**
+     * método para eliminar un empleado temporal de un departamento.
+     * 
+     * @param cedula 
+     */
     public void EliminarEmpTemp(String cedula){
         try {
             for (EmpleadoTemporal empleadoTemporal : listaEmpleadosTemp) {
@@ -172,6 +223,9 @@ public class Departamento {
         }
     }
     
+    /**
+     * método para generar un pequeño reporte de los datos de cada empleado de un departamento
+     */
     public void generarReporteXEmpleado() {
         try {
             for (EmpleadoPermanente empleadoPermanente : listaEmpleadosPerm) {
